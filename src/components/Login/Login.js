@@ -92,14 +92,17 @@ const Login = (props) => {
 	// 	};
 	// }, [enteredEmail, enteredPassword]);
 
+	const { isValid: emailIsValid } = emailState;
+	const { isValid: passwordIsValid } = emailState;
+
 	useEffect(() => {
 		const identifier = setTimeout(() => {
-			setFormIsValid(emailState.isValid && passwordState.isValid);
+			setFormIsValid(passwordIsValid && emailIsValid);
 		}, 500);
 		return () => {
 			clearInterval(identifier);
 		};
-	}, [emailState, passwordState]);
+	}, [emailIsValid, passwordIsValid]);
 
 	useEffect(() => {
 		console.log('EFFECT RUNNING');
